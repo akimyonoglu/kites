@@ -1,0 +1,31 @@
+{
+  "devMode": true,
+  "version": "1",
+  "name": "consumer",
+  "type": "worker",
+  "identifier": "com.koding.kites.consumer",
+  "path": "~/Kites/consumer.kite",
+  "homepage": "devrim.koding.com/kites/consumer",
+  "author": "devrim",
+  "mergen": "local.koding.com:6380",
+  "repository": "git://github.com/devrim/consumer.kite.git",
+  "description": "consumer : a Koding kite",
+  "category": "web-api",
+  "source": {
+    "blocks": {
+      "kite": {
+        "files": [
+          "./index.coffee"
+        ]
+      }
+    }
+  },
+  "options": {
+    "privacy": "private"
+  },
+  "icns": {
+    "128": "./resources/icon.128.png"
+  },
+  "dependencies": [],
+  "apiAddress": "http://local.koding.com"
+}

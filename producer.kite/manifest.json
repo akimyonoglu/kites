@@ -1,0 +1,31 @@
+{
+  "devMode": true,
+  "version": "1",
+  "name": "producer",
+  "type": "worker",
+  "identifier": "com.koding.kites.producer",
+  "path": "~/Kites/producer.kite",
+  "homepage": "devrim.koding.com/kites/producer",
+  "author": "devrim",
+  "mergen": "local.koding.com:6380",
+  "repository": "git://github.com/devrim/producer.kite.git",
+  "description": "producer : a Koding kite",
+  "category": "web-api",
+  "source": {
+    "blocks": {
+      "kite": {
+        "files": [
+          "./index.coffee"
+        ]
+      }
+    }
+  },
+  "options": {
+    "privacy": "private"
+  },
+  "icns": {
+    "128": "./resources/icon.128.png"
+  },
+  "dependencies": [],
+  "apiAddress": "http://local.koding.com"
+}
