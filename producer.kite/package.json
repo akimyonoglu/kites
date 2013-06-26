@@ -2,6 +2,7 @@
   "name": "producer.kite",
   "main": "index.js",
   "dependencies": {
-    "redis": "latest"
+    "redis": "latest",
+    "line-reader": "latest"
   }
 }

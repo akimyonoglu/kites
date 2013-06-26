@@ -1,52 +1,30 @@
 ###
 #
 #  consumer Kite for Koding
-#  Author: devrim 
-#
-#  This is an example kite with two methods:
-#
-#    - helloWorld
-#    - fooBar
+#  Author: armagan
 #
 ###
 kite     = require "kite-amqp/lib/kite-amqp/kite.coffee"
 manifest = require "./manifest.json"
-
-pinger = kite.worker manifest,
+natural = require "natural"
+counter = 0
+consumer = kite.worker manifest,
 
   consumeque:(options, callback)->
     console.log "options", options
+    console.log counter++
+    @db.hincrby "wordcount", "words", 1
+    tokenizer = new natural.WordTokenizer();
+    wordsList = tokenizer.tokenize("#{options.args[0]}")
+    for word in wordsList
+      @db.hincrby "testMap", word, 1, (err) ->
+        if err
+          console.error err
+
     if callback
-      @db.hset "pinger_processed", "#{options.args[0]}", 1, ()->
-        callback(false, "#{options.args[0]} processed")
+      callback(false, true)
 
-  # pong: (options, callback)->
-  #   console.log "received pong"
-  #   console.log "options", arguments
-  #   console.log "sender", options.from
-  #   console.log "now pinging the sender"
-  #   # this sends a ping request to the sender only
-  #   # and then sender broadcasts pong request...
-  #   @one options.from, "ping", [], (err, r)->
-  #     console.log "sent ping"
-
-  # ping: (options, callback)->
-  #   # this sends a pong request to everyone...
-  #   @everyone "pong", [options], (reply)->
-  #     console.log "here", reply
-  #   callback()
-
-  # start: (options, callback)->
-  #   for i in [1..3]
-  #     console.log ">>> ", i
-  #     @queue "consumeque", ["worldx_#{i}"], (err, ret)->
-  #       console.log "queue command returned", arguments
-  # , true
-  # #   @everyone "ping", [options], (reply)->
-  # #     console.log "here", reply
-  # # , true
-
-pinger.on 'running', ()->
-  pinger.call 'start', [], ()->
+consumer.on 'running', ()->
+  consumer.call 'start', [], ()->
     console.log "started"
     #process.exit 0

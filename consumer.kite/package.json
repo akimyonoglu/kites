@@ -2,6 +2,7 @@
   "name": "consumer.kite",
   "main": "index.js",
   "dependencies": {
-    "redis": "latest"
+    "redis": "latest",
+    "natural": "latest"
   }
 }

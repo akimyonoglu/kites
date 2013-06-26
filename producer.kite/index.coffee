@@ -1,45 +1,31 @@
 ###
 #
-#  producer Kite for Koding
-#  Author: devrim 
-#
-#  This is an example kite with two methods:
-#
-#    - helloWorld
-#    - fooBar
+#  consumer Kite for Koding
+#  Author: armagan
 #
 ###
 kite     = require "kite-amqp/lib/kite-amqp/kite.coffee"
 manifest = require "./manifest.json"
+lineReader = require 'line-reader'
 
-pinger = kite.worker manifest,
-
-  # pong: (options, callback)->
-  #   console.log "received pong"
-  #   console.log "options", arguments
-  #   console.log "sender", options.from
-  #   console.log "now pinging the sender"
-  #   # this sends a ping request to the sender only
-  #   # and then sender broadcasts pong request...
-  #   @one options.from, "ping", [], (err, r)->
-  #     console.log "sent ping"
-
-  # ping: (options, callback)->
-  #   # this sends a pong request to everyone...
-  #   @everyone "pong", [options], (reply)->
-  #     console.log "here", reply
-  #   callback()
+producer = kite.worker manifest,
 
   start: (options, callback)->
-    for i in [1..3]
-      console.log ">>> ", i
-      @queue  "consumer", "consumeque", ["worldx_#{i}"], (err, ret)->
-        console.log "queue command returned", arguments
-  #   @everyone "ping", [options], (reply)->
-  #     console.log "here", reply
-  # , true
+    counter = 0
+    que = []
+    lineReader.eachLine '../sample.txt', (line, last) =>
+      console.log counter++
+      que.push line
+      if last
+        while que.length > 0
+          mline = que.pop()
+          console.log ">>>>>>", counter--
+          @queue  "consumer", "consumeque", [mline], (err, ret)->
+            console.log "queue command returned", arguments
+        # if last
+        #   console.log "file content sent to queue"
 
-pinger.on 'running', ()->
-  pinger.call 'start', [], ()->
+producer.on 'running', ()->
+  producer.call 'start', [], ()->
     console.log "started"
     #process.exit 0
