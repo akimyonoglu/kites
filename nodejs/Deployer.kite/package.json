@@ -4,6 +4,7 @@
   "dependencies": {
     "fs-extra" : "latest",
     "node-uuid": "latest",
+    "redis": "latest",
     "wrench"   : "latest"
   }
 }
