@@ -6,10 +6,9 @@
   "identifier": "com.koding.kites.Deployer",
   "path": "~/Kites/Deployer.kite",
   "homepage": "armagankim.koding.com/kites/Deployer",
-  "author": "devrim",
+  "author": "armagankim",
   "repository": "git://github.com/armagankim/Deployer.kite.git",
   "description": "Deployer : a Koding kite",
-    "mergen": "local.koding.com:6380",
   "category": "web-api",
   "source": {
     "blocks": {
@@ -27,5 +26,5 @@
     "128": "./resources/icon.128.png"
   },
   "dependencies": [],
-  "apiAddress": "http://local.koding.com"
+  "apiAddress": "https://koding.com"
 }
