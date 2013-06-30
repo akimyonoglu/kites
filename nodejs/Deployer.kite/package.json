@@ -5,6 +5,7 @@
     "fs-extra" : "latest",
     "node-uuid": "latest",
     "redis": "latest",
+    "kite-amqp": "latest",
     "wrench"   : "latest"
   }
 }
