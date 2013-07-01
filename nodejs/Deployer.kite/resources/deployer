@@ -1,4 +1,4 @@
 #!/bin/bash
 export HOME=/root
 cd /opt/kites/nodejs/Deployer.kite
-kd kite run 2>&1 > /tmp/deployer.out &
+nohup kd kite run > /tmp/deployer.out &
