@@ -116,7 +116,7 @@ manifest.name = "Deployer"
 manifest.uuid = deployerId
 
 deploys = []
-kite.worker manifest, 
+deployer = kite.worker manifest,
 
   report: (args, callback)->
     o = {id: @communicator.getChannelNameForKite(), deployCnt: deploys.length}
@@ -176,7 +176,7 @@ kite.worker manifest,
       bestKite = findBestDeployer(kites)
       @one bestKite.id, 'doDeploy', options.args, (args)->
         console.log "doDeploy returned.....", args
-        callback(bestKite) 
-
+        callback(bestKite)
+deployer.run()
 
 
