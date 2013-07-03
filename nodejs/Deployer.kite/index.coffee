@@ -177,6 +177,7 @@ deployer = kite.worker manifest,
       @one bestKite.id, 'doDeploy', options.args, (args)->
         console.log "doDeploy returned.....", args
         callback(bestKite)
-deployer.run()
+
+deployer.start()
 
 
