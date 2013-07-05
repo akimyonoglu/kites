@@ -25,6 +25,7 @@ cp /var/lib/lxc/vmroot/config-template /var/lib/lxc/$lxcName/config
 sed -i "s/#NAME#/$lxcName/" /var/lib/lxc/$lxcName/config
 sed -i "s/#IP#/$lxcIP/" /var/lib/lxc/$lxcName/config
 sed -i "s/#HOSTNAME#/$lxcName/" /var/lib/lxc/$lxcName/config
+echo "10.128.1.$lxcIP $lxcName" >> /var/lib/lxc/$lxcName/rootfs/etc/hosts
 
 echo $lxcName | sed "s/\./-/" > /var/lib/lxc/$lxcName/rootfs/etc/hostname
 
