@@ -5,7 +5,7 @@ lxc.network.flags = up
 lxc.network.ipv4 = 10.128.1.#IP#
 lxc.network.ipv4.gateway = 10.128.1.1
 lxc.rootfs = /var/lib/lxc/#NAME#/rootfs
-lxc.utsname = vmroot
+lxc.utsname = #HOSTNAME#
 
 lxc.tty = 0
 lxc.pts = 0
